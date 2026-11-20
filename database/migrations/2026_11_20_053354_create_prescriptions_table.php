@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('prescriptions', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Order::class)->constrained();
-            $table->foreignId('customer_id')->nullable()->constrained('users');
+            $table->foreignId('customer_id')->constrained('users');
             $table->foreignId('validated_by_id')->nullable()->constrained('users');
             $table->string('patient_full_name');
             $table->integer('patient_age');
@@ -25,9 +25,9 @@ return new class extends Migration
             $table->date('expires_at');
             $table->string('scan_url');
             $table->string('scan_hash');
-            $table->timestamp('validated_at');
-            $table->timestamp('rejected_at');
-            $table->text('rejected_reason');
+            $table->timestamp('validated_at')->nullable();
+            $table->timestamp('rejected_at')->nullable();
+            $table->text('rejected_reason')->nullable();
             $table->timestamps();
         });
     }

@@ -16,12 +16,13 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
             // $table->foreignId('admin_id')->nullable()->constrained('users');
+            $table->unsignedBigInteger('total')->nullable();
             $table->unsignedBigInteger('delivery_fee')->nullable();
             $table->string('delivery_adress')->nullable();
             // $table->string('parcel_image')->nullable();
             // $table->string('receipt_image')->nullable();
             $table->timestamp('paid_at')->nullable();
-            $table->timestamp('ship_at')->nullable();
+            $table->timestamp('handle_at')->nullable();
             $table->timestamp('delivered_at')->nullable();
 
             $table->timestamps();
