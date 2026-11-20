@@ -28,7 +28,6 @@ return new class extends Migration
             $table->string('image');
             $table->boolean('is_prescription_required');
             // $table->unsignedInteger('views_count')->default(0);
-            $table->string('image');
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
