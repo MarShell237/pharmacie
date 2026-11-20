@@ -2,6 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::inertia('/', function() {
+Route::get('/', function() {
     return redirect("/admin");
 })->name('home');
