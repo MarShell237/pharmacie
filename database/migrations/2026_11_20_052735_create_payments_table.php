@@ -15,9 +15,9 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Order::class)->constrained();
+            $table->string('merchant_reference')->unique();
             $table->string('payment_method');
             $table->string('status');
-
             $table->timestamps();
         });
     }

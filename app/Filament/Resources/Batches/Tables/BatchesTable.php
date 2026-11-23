@@ -15,18 +15,23 @@ class BatchesTable
         return $table
             ->columns([
                 TextColumn::make('batch_number')
+                    ->label('numéro de lot')
                     ->searchable(),
                 TextColumn::make('expiration_date')
+                    ->label('date d\'expriration')
                     ->date()
                     ->sortable(),
                 TextColumn::make('quantity_receive')
+                    ->label('quantité reçue')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('created_at')
+                    ->label('créé le')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label('mis à jour le')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

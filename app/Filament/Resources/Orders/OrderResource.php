@@ -25,7 +25,7 @@ class OrderResource extends Resource
     {
         return (string) Order::whereNotNull('paid_at')
                                 ->whereNull('delivered_at')
-                                ->whereNull('handled_at')
+                                ->whereNull('handle_at')
                                 ->count();
     }
 
@@ -60,7 +60,7 @@ class OrderResource extends Resource
     {
         return [
             'index' => ListOrders::route('/'),
-            'create' => CreateOrder::route('/create'),
+            // 'create' => CreateOrder::route('/create'),
             'edit' => EditOrder::route('/{record}/edit'),
         ];
     }

@@ -19,9 +19,10 @@ class OrderSeeder extends Seeder
 
         for ($i = 0; $i < $count; $i++) {
             $user = User::role(UserRole::CUSTOMER->value)->inRandomOrder()->first();
-            Order::factory()
+            $order = Order::factory()
                 ->for($user, 'user')
                 ->create();
+            if($order->paid_at) $order->merchant_reference = 'ORDER' . $order->id . time();
         }
 
     }

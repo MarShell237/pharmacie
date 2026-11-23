@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constrained();
             // $table->foreignId('admin_id')->nullable()->constrained('users');
             $table->unsignedBigInteger('total')->nullable();
+            $table->string('merchant_reference')->nullable();
             $table->unsignedBigInteger('delivery_fee')->nullable();
             $table->string('delivery_adress')->nullable();
             // $table->string('parcel_image')->nullable();

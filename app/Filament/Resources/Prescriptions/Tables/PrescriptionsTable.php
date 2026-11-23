@@ -7,7 +7,9 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class PrescriptionsTable
 {
@@ -15,10 +17,11 @@ class PrescriptionsTable
     {
         return $table
             ->columns([
-                ImageColumn::make('scan_url'),
-                TextColumn::make('order_id')
-                    ->numeric()
-                    ->sortable(),
+                ImageColumn::make('scan_url')
+                    ->label('image'),
+                TextColumn::make('order.payment.merchant_reference')
+                    ->label('reference unique du paiement')
+                    ->placeholder('commande non payer'),
                 TextColumn::make('customer.email')
                     ->label('email du client')
                     ->numeric()
@@ -60,7 +63,10 @@ class PrescriptionsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                // Filter::make('en_attente_livraison')
+                //     ->label('En attente de livraison')
+                //     ->query(fn (Builder $query) => $query->whereNotNull('order.paid_at')->whereNull('order.delivered_at'))
+                //     ->default(),
             ])
             ->recordActions([
                 EditAction::make(),
