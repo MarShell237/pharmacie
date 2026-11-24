@@ -21,9 +21,10 @@ class UsersTable
                     ->label('nom')
                     ->searchable(),
                 TextColumn::make('email')
-                    ->label('Email address')
+                    ->label('adresse email')
                     ->searchable(),
                 TextColumn::make('phone')
+                    ->label('telephone')
                     ->searchable(),
                 TextColumn::make('roles.name')
                     ->label('Rôle')
@@ -43,14 +44,17 @@ class UsersTable
                 //     ->dateTime()
                 //     ->sortable(),
                 TextColumn::make('deleted_at')
+                    ->label('supprimer le')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
+                    ->label('créé le')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label('mis à jour le')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

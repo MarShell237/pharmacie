@@ -20,17 +20,22 @@ class ReviewsTable
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('rating')
+                    ->label('note')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('content')
+                    ->label('contenu')
                     ->searchable(),
                 IconColumn::make('is_visible')
+                    ->label('est visible ?')
                     ->boolean(),
                 TextColumn::make('created_at')
+                    ->label('créé le')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label('mis à jour le')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

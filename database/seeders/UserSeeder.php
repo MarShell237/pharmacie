@@ -16,16 +16,8 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-
-        $user = User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => Hash::make('password'),
-        ])
-        ->assignRole(Role::firstWhere('name', UserRole::ADMIN->value));
-        $user->registration_number = "PHARMACIE-" . $user->id;
-        $user->save();
         $this->call([
+            AdminSeeder::class,
             CustomerSeeder::class,
         ]);
     }
