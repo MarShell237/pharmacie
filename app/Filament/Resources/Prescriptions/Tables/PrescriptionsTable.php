@@ -78,6 +78,8 @@ class PrescriptionsTable
                 //     ->label('En attente de livraison')
                 //     ->query(fn (Builder $query) => $query->whereNotNull('order.paid_at')->whereNull('order.delivered_at'))
                 //     ->default(),
+                Filter::make('deja inspecter')
+                    ->label()
             ])
             ->recordActions([
                 EditAction::make(),
