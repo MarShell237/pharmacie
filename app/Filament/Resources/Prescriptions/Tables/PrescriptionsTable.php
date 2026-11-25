@@ -9,6 +9,7 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
+use Filament\Tables\Grouping\Group;
 use Illuminate\Database\Eloquent\Builder;
 
 class PrescriptionsTable
@@ -16,10 +17,11 @@ class PrescriptionsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->defaultGroup('order')
             ->columns([
                 ImageColumn::make('scan_url')
                     ->label('image'),
-                TextColumn::make('order.payment.merchant_reference')
+                TextColumn::make('order.merchant_reference')
                     ->label('reference unique du paiement')
                     ->placeholder('commande non payer'),
                 TextColumn::make('customer.email')
@@ -82,6 +84,10 @@ class PrescriptionsTable
                     ->label('non inspecter')
                     ->query(fn (Builder $query) => $query->whereNull('validated_at')->whereNull('rejected_at'))
                     ->default()
+            ])
+            ->groups([
+                Group::make('order.merchant_reference')
+                    ->label('commande deja payer')
             ])
             ->recordActions([
                 EditAction::make(),

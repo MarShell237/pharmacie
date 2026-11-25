@@ -15,8 +15,12 @@ class PaymentSeeder extends Seeder
     public function run(): void
     {
         Order::whereNotNull('paid_at')->each(function($order){
+            $merchant_reference = 'ORDER' . $order->id . time();
             Payment::factory()->for($order, 'order')->create([
-                'merchant_reference' => 'ORDER' . $order->id . time()
+                'merchant_reference' => $merchant_reference,
+            ]);
+            $order->update([
+                'merchant_reference' => $merchant_reference,
             ]);
         });
     }

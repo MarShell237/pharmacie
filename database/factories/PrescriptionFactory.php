@@ -24,7 +24,7 @@ class PrescriptionFactory extends Factory
             'patient_full_name' => $patient_full_name,
             'patient_age' => fake()->numberBetween(1, 100),
             'doctor_name' => fake()->name(),
-            'doctor_license' => "PHARMACIE-".timw(),
+            'doctor_license' => "PHARMACIE-".time(),
             'prescribed_at' => $prescribed_at,
             'expires_at' => $expires_at,
             'scan_url' => fake()->imageUrl($word = $patient_full_name),

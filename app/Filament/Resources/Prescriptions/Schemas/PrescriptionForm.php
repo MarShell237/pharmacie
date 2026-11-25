@@ -14,9 +14,8 @@ class PrescriptionForm
     {
         return $schema
             ->components([
-                TextInput::make('order_id')
-                    ->required()
-                    ->numeric(),
+                TextInput::make('order.payment.merchant_reference')
+                    ->disabled(),
                 TextInput::make('customer_id')
                     ->numeric(),
                 TextInput::make('validated_by_id')
