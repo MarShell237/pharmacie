@@ -35,24 +35,27 @@ class OrdersTable
                     ->searchable(),
                 TextColumn::make('paid_at')
                     ->label('payé à')
-                    ->dateTime()
+                    ->placeholder('pas encore payer')
+                    ->dateTime('l d F Y à H:i:s')
                     ->sortable(),
                 TextColumn::make('handle_at')
                     ->label('pris en charge à')
-                    ->dateTime()
+                    ->placeholder('pas encore pris en charge')
+                    ->dateTime('l d F Y à H:i:s')
                     ->sortable(),
                 TextColumn::make('delivered_at')
                     ->label('livrer à')
-                    ->dateTime()
+                    ->placeholder('pas encore livrer')
+                    ->dateTime('l d F Y à H:i:s')
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->label('créé le')
-                    ->dateTime()
+                    ->dateTime('l d F Y à H:i:s')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
                     ->label('mis à jour le')
-                    ->dateTime()
+                    ->dateTime('l d F Y à H:i:s')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
@@ -64,7 +67,7 @@ class OrdersTable
 
                 Filter::make('non_pris_en_charge')
                     ->label('Non pris en charge')
-                    ->query(fn (Builder $query) => $query->whereNull('handled_at')),
+                    ->query(fn (Builder $query) => $query->whereNull('handle_at')),
 
                     Filter::make('non_payees')
                     ->label('Non payées')

@@ -31,12 +31,12 @@ class ReviewsTable
                     ->boolean(),
                 TextColumn::make('created_at')
                     ->label('créé le')
-                    ->dateTime()
+                    ->dateTime('l d F Y à H:i:s')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
                     ->label('mis à jour le')
-                    ->dateTime()
+                    ->dateTime('l d F Y à H:i:s')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])

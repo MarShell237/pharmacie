@@ -19,7 +19,7 @@ class BatchesTable
                     ->searchable(),
                 TextColumn::make('expiration_date')
                     ->label('date d\'expriration')
-                    ->date()
+                    ->date('l d F Y')
                     ->sortable(),
                 TextColumn::make('quantity_receive')
                     ->label('quantité reçue')
@@ -27,12 +27,12 @@ class BatchesTable
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->label('créé le')
-                    ->dateTime()
+                    ->dateTime('l d F Y à H:i:s')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
                     ->label('mis à jour le')
-                    ->dateTime()
+                    ->dateTime('l d F Y à H:i:s')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])

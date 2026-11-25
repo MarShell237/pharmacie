@@ -17,16 +17,16 @@ class PrescriptionsTable
     public static function configure(Table $table): Table
     {
         return $table
-            ->defaultGroup('order')
+            ->defaultGroup('order.merchant_reference', direction: 'desc')
             ->columns([
                 ImageColumn::make('scan_url')
-                    ->label('image'),
+                    ->label('image')
+                    ->imageWidth(200),
                 TextColumn::make('order.merchant_reference')
                     ->label('reference unique du paiement')
                     ->placeholder('commande non payer'),
                 TextColumn::make('customer.email')
                     ->label('email du client')
-                    ->numeric()
                     ->sortable(),
                 TextColumn::make('admin.name')
                     ->label('admin valideur')
@@ -47,31 +47,33 @@ class PrescriptionsTable
                     ->searchable(),
                 TextColumn::make('prescribed_at')
                     ->label('prescrit le')
-                    ->date()
+                    ->date('l d F Y')
                     ->sortable(),
                 TextColumn::make('expires_at')
                     ->label('expire la')
-                    ->date()
+                    ->date('l d F Y')
                     ->sortable(),
                 // TextColumn::make('scan_hash')
                 //     ->label('hash de l\'image')
                 //     ->searchable(),
                 TextColumn::make('validated_at')
                     ->label('valider le')
-                    ->dateTime()
+                    ->placeholder('pas encore valider')
+                    ->dateTime('l d F Y à H:i:s')
                     ->sortable(),
                 TextColumn::make('rejected_at')
                     ->label('rejeter le')
-                    ->dateTime()
+                    ->placeholder('rejeter le')
+                    ->dateTime('l d F Y à H:i:s')
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->label('créé le')
-                    ->dateTime()
+                    ->dateTime('l d F Y à H:i:s')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
                     ->label('mis à jour le')
-                    ->dateTime()
+                    ->dateTime('l d F Y à H:i:s')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])

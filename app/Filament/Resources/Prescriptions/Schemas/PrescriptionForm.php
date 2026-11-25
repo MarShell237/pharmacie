@@ -7,6 +7,9 @@ use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Support\Enums\TextSize;
+use Filament\Infolists\Components\ImageEntry;
 
 class PrescriptionForm
 {
@@ -14,36 +17,54 @@ class PrescriptionForm
     {
         return $schema
             ->components([
-                TextInput::make('order.payment.merchant_reference')
-                    ->disabled(),
-                TextInput::make('customer_id')
-                    ->numeric(),
-                TextInput::make('validated_by_id')
-                    ->numeric(),
+                ImageEntry::make('scan_url')
+                    ->getStateUsing(fn ($record) => $record->getFileUrl())
+                    ->visible(fn ($record) => filled($record))
+                    ->label('image d\'ordonnance'),
+                // TextInput::make('scan_url')
+                //     ->url()
+                //     ->required(),
+                TextEntry::make('order.merchant_reference')
+                    ->label('reference unique du paiement')
+                    ->placeholder('commande non payer')
+                    ->size(TextSize::Large),
+                TextEntry::make('customer.email')
+                    ->label('email du client')
+                    ->size(TextSize::Large),
+                TextEntry::make('admin.name')
+                    ->label('admin valideur')
+                    ->placeholder('pas encore valider'),
                 TextInput::make('patient_full_name')
+                    ->label('nom complet du patient')
                     ->required(),
                 TextInput::make('patient_age')
+                    ->label('age du patient')
                     ->required()
                     ->numeric(),
                 TextInput::make('doctor_name')
+                    ->label('nom du docteur')
                     ->required(),
                 TextInput::make('doctor_license')
+                    ->label('license du docteur')
                     ->required(),
                 DatePicker::make('prescribed_at')
+                    ->label('prescrit le')
                     ->required(),
                 DatePicker::make('expires_at')
+                    ->label('expire la')
                     ->required(),
-                TextInput::make('scan_url')
-                    ->url()
-                    ->required(),
-                TextInput::make('scan_hash')
-                    ->required(),
+                // TextInput::make('scan_hash')
+                //     ->required(),
                 DateTimePicker::make('validated_at')
-                    ->required(),
+                    ->label('valider le')
+                    ->disabled(),
                 DateTimePicker::make('rejected_at')
-                    ->required(),
+                    ->label('rejeter le')
+                    ->disabled(),
                 Textarea::make('rejected_reason')
-                    ->required()
+                    ->label('raison du rejet')
+                    ->disabled(fn($record) => filled($record->validated_by_id))
+                    // ->required()
                     ->columnSpanFull(),
             ]);
     }

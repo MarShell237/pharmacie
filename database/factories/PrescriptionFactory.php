@@ -27,7 +27,7 @@ class PrescriptionFactory extends Factory
             'doctor_license' => "PHARMACIE-".time(),
             'prescribed_at' => $prescribed_at,
             'expires_at' => $expires_at,
-            'scan_url' => fake()->imageUrl($word = $patient_full_name),
+            'scan_url' => fake()->imageUrl($word = $patient_full_name, $width = 300),
             'scan_hash' => fake()->sha256()
         ];
     }
