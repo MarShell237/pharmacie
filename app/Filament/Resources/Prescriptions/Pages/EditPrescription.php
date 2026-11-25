@@ -49,8 +49,9 @@ class EditPrescription extends EditRecord
     }
     
     protected function afterSave(){
-        $prescription = $this->record;
-        if(filled($prescription->rejected_reason)){
+        $prescription = $this->record->refresh();
+        // dump($prescription);
+        if(filled($prescription->rejected_reason) && !filled($prescription->validated_by_id)){
             $user = $prescription->user;
             // $admin = User::role(UserRole::ADMIN->value, 'api')->first();
 

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use App\traits\HasFile;
 
-#[Fillable(['validated_by_id', 'validated_at', 'rejected_at'])]
+#[Fillable(['validated_by_id', 'validated_at', 'rejected_at', 'rejected_reason'])]
 class Prescription extends Model
 {
     use HasFactory, HasFile;
