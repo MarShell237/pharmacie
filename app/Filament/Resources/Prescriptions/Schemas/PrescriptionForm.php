@@ -31,9 +31,10 @@ class PrescriptionForm
                 TextEntry::make('customer.email')
                     ->label('email du client')
                     ->size(TextSize::Large),
-                TextEntry::make('admin.name')
+                TextEntry::make('admin.email')
                     ->label('admin valideur')
-                    ->placeholder('pas encore valider'),
+                    ->placeholder('pas encore valider')
+                    ->size(TextSize::Large),
                 TextInput::make('patient_full_name')
                     ->label('nom complet du patient')
                     ->required(),

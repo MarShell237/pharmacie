@@ -18,6 +18,8 @@ use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Filament\Enums\UserMenuPosition;
+use App\Filament\Pages\Auth\EditProfile;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -28,6 +30,13 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->profile(EditProfile::class)
+            ->userMenu(position: UserMenuPosition::Sidebar)
+            ->topbar(false)
+            ->databaseNotifications()
+            ->passwordReset()
+            ->emailVerification()
+            ->emailChangeVerification()
             ->colors([
                 'primary' => Color::Emerald ,
             ])

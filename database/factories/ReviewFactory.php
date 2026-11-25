@@ -19,7 +19,7 @@ class ReviewFactory extends Factory
     {
         return [
             'rating' => fake()->numberBetween(1, 5),
-            'content' => fake()->realText(30),
+            'content' => fake('fr_FR')->realText(30),
             'is_visible' => fake()->boolean()
         ];
     }

@@ -5,6 +5,9 @@ namespace App\Filament\Resources\Users\Schemas;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use Filament\Forms\Components\Select;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserForm
 {
@@ -13,18 +16,24 @@ class UserForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->label('nom')
                     ->required(),
                 TextInput::make('email')
-                    ->label('Email address')
+                    ->label('addresse email')
                     ->email()
+                    ->unique()
                     ->required(),
                 TextInput::make('phone')
-                    ->tel(),
-                TextInput::make('registration_number'),
-                DateTimePicker::make('email_verified_at'),
-                TextInput::make('password')
-                    ->password()
+                    ->label('numéro de téléphone')
+                    ->unique()
                     ->required(),
+                TextInput::make('registration_number')
+                    ->label('matricule'),
+                TextInput::make('password')
+                    ->disabled()
+                    ->password()
+                    ->dehydrated()
+                    ->default(fn () => Hash::make(Str::random(32)))
             ]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Reviews\Schemas;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
+use Filament\Infolists\Components\TextEntry;
 
 class ReviewForm
 {
@@ -12,15 +13,19 @@ class ReviewForm
     {
         return $schema
             ->components([
-                TextInput::make('user_id')
-                    ->required()
-                    ->numeric(),
+                TextEntry::make('user.email')
+                    ->label('email du client'),
                 TextInput::make('rating')
+                    ->disabled()
+                    ->label('note')
                     ->required()
                     ->numeric(),
                 TextInput::make('content')
+                    ->disabled()
+                    ->label('contenu')
                     ->required(),
                 Toggle::make('is_visible')
+                    ->label('est visible ?')
                     ->required(),
             ]);
     }

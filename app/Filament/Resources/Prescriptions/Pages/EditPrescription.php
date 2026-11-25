@@ -34,11 +34,11 @@ class EditPrescription extends EditRecord
                     foreach($admins as $admin){
                         Notification::make()
                             ->title('Ordonnace valider')
-                            ->body("La commande n°{$prescription->id} a été marquée comme validee. Vous pouvez consulter les détails dès maintenant.")
+                            ->body("L'ordonnance' n°{$prescription->id} a été marquée comme validee. Vous pouvez consulter les détails dès maintenant.")
                             ->success()
                             ->actions([
                                 Action::make('view')
-                                    ->label('Voir la commande')
+                                    ->label('Voir l\'ordonnance')
                                     ->url(url("admin/prescriptions/{$prescription->id}/edit"))
                                     ->button() 
                             ])
@@ -66,7 +66,7 @@ class EditPrescription extends EditRecord
                     ->success()
                     ->actions([
                         Action::make('view')
-                            ->label('Voir la commande')
+                            ->label('Voir l\'ordonnance')
                             ->url(url("admin/prescriptions/{$prescription->id}/edit"))
                             ->button() 
                     ])
