@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
-            // $table->foreignId('admin_id')->nullable()->constrained('users');
+            $table->foreignId('admin_id')->nullable()->constrained('users');
             $table->unsignedBigInteger('total')->nullable();
             $table->string('merchant_reference')->nullable();
             $table->unsignedBigInteger('delivery_fee')->nullable();

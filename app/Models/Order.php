@@ -4,7 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 
+#[Fillable(['admin_id', 'handle_at', 'paid_at', 'delivered_at'])]
 class Order extends Model
 {
     use HasFactory;

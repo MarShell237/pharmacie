@@ -5,6 +5,8 @@ namespace App\Filament\Resources\Orders\Pages;
 use App\Filament\Resources\Orders\OrderResource;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
+use Filament\Actions\Action;
+use App\Models\Order;
 
 class EditOrder extends EditRecord
 {
@@ -13,7 +15,17 @@ class EditOrder extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            DeleteAction::make(),
+            // DeleteAction::make(),
+            Action::make('Prendre en charge')
+                ->visible(fn(Order $record) => !filled($record->admin_id))
+                ->color('success')
+                ->requiresConfirmation()
+                ->action(function(Order $record){
+                    $record->update([
+                        'admin_id' => auth()->user()->id,
+                        'handled_at' => now()
+                    ]);
+                })
         ];
     }
 }
