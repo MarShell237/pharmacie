@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
             OrderSeeder::class,
             ReviewSeeder::class,
             PrescriptionSeeder::class,
-            PaymentSeeder::class
+            PaymentSeeder::class,
+            OrderItemSeeder::class,
         ]);
     }
 }
