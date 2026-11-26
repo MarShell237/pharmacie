@@ -23,7 +23,7 @@ class EditOrder extends EditRecord
                 ->action(function(Order $record){
                     $record->update([
                         'admin_id' => auth()->user()->id,
-                        'handled_at' => now()
+                        'handle_at' => now()
                     ]);
                 })
         ];
